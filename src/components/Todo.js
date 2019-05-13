@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import axios from 'axios';
+import {
+  Section, 
+  TodoInput, 
+  TodoContainer, 
+  TodoButton, 
+  TodoListElement, 
+  TodoLi
+} from './styled';
 
 const todo = props => {
   const [todoName, setTodoName] = useState('');
@@ -64,26 +72,28 @@ const todo = props => {
   };
 
   return (
-    <React.Fragment>
-      <input
-        type="text"
-        placeholder="Todo"
-        onChange={inputChangeHandler}
-        value={todoName}
-      />
-      <button type="button" onClick={todoAddHandler}>
-        Add
-      </button>
-      <ul>
+    <Section>
+      <TodoContainer>
+        <TodoInput
+          type="text"
+          placeholder="Todo"
+          onChange={inputChangeHandler}
+          value={todoName}
+        />
+        <TodoButton type="button" onClick={todoAddHandler}>
+          +
+        </TodoButton>
+      </TodoContainer>
+      <TodoListElement>
         {todoList.map(todo => {
           return (
-            <li key={todo.id} onClick={todoRemoveHandler.bind(this, todo.id)}>
+            <TodoLi key={todo.id} onClick={() => todoRemoveHandler(todo.id)}>
               {todo.name}
-            </li>
+            </TodoLi>
           );
         })}
-      </ul>
-    </React.Fragment>
+      </TodoListElement>
+    </Section>
   );
 };
 

@@ -18,17 +18,22 @@ const app = props => {
 
   const login = () => {
     setAuthStatus(true);
+    setCurrentPage('todo');
+  };
+
+  const logout = () => {
+    setAuthStatus(false);
+    setCurrentPage('auth');
   };
 
   return (
-    <div className="App">
-      <AuthContext.Provider value={{ status: authStatus, login: login }}>
+    <>
+      <AuthContext.Provider value={{ status: authStatus, login: login, logout: logout }}>
         <Header onLoadTodos={onTodoHandler} onLoadAuth={onAuthHandler} />
-        <hr />
         {currentPage === 'todo' ? <Todo /> : ''}
         {currentPage === 'auth' ? <Auth /> : ''}
       </AuthContext.Provider>
-    </div>
+    </>
   );
 };
 

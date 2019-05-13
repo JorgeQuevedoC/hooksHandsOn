@@ -1,15 +1,16 @@
 import React, { useContext } from 'react';
 import AuthContext from '../auth-context';
+import { HeaderContainer,HeaderButton } from "./styled";
 
 const header = props => {
   const auth = useContext(AuthContext);
   return (
-    <header>
+    <HeaderContainer>
       {auth.status ? (
-        <button onClick={props.onLoadTodos}>Todo List</button>
+        <HeaderButton onClick={props.onLoadTodos}>Todo List</HeaderButton>
       ) : null}
-      <button onClick={props.onLoadAuth}>Auth</button>
-    </header>
+      <HeaderButton onClick={props.onLoadAuth}>Auth</HeaderButton>
+    </HeaderContainer>
   );
 };
 
